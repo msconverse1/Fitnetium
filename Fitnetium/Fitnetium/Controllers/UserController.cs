@@ -90,7 +90,7 @@ namespace Fitnetium.Controllers
         //{
         //    var energyExpenditure = .0175 * MethodAccessException * (weight * 2.2f);
         //}
-        public double[] CalBMI(User user) 
+        public double[] CalHeratRateZones(User user) 
         {
             var maxHearRate = 220 - user.age;
             var restingHeart = maxHearRate - 80;
@@ -116,6 +116,28 @@ namespace Fitnetium.Controllers
             heartzone[0] = lowHHR;
             heartzone[1] = highHHR;
             return heartzone;
+        }
+        public string CalBMI(User user)
+        {
+            var BMI = (user.weight / ((65) ^ 2)) * 703;
+            string weightStatus;
+            if (BMI >= 30)
+            {
+                weightStatus = "Obese";
+            }
+            else if(BMI >=25 && BMI <=29.9)
+            {
+                weightStatus = "Overweight";
+            }
+            else if(BMI >=18.5 && BMI <=24.9)
+            {
+                weightStatus = "Normal";
+            }
+            else
+            {
+                weightStatus = "Underweight";
+            }
+            return weightStatus;
         }
     }
 }
