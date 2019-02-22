@@ -13,7 +13,9 @@ namespace Fitnetium.Models
         public int ID { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-
+        public int age { get; set; }
+        public float weight { get; set; }
+        public float hieght { get; set; }
         [ForeignKey("Workout")]
         [Display(Name ="WorkoutID")]
         public int? UserWorkoutID { get; set; }
