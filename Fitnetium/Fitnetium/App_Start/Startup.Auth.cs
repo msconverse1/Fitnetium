@@ -46,9 +46,9 @@ namespace Fitnetium
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+              clientId: "8561342e-7a61-4c42-aeb9-4fd09cff72a5",
+              clientSecret: "swrrPOOAU779}=mgvMV38?!");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",

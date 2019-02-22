@@ -183,6 +183,14 @@
     <Compile Include="Migrations\201902222107540_Initals.Designer.cs">
       <DependentUpon>201902222107540_Initals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902222126502_made workoutid nullable.cs" />
+    <Compile Include="Migrations\201902222126502_made workoutid nullable.Designer.cs">
+      <DependentUpon>201902222126502_made workoutid nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902222128448_made workoutid in user nullable.cs" />
+    <Compile Include="Migrations\201902222128448_made workoutid in user nullable.Designer.cs">
+      <DependentUpon>201902222128448_made workoutid in user nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -269,6 +277,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902222107540_Initals.resx">
       <DependentUpon>201902222107540_Initals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902222126502_made workoutid nullable.resx">
+      <DependentUpon>201902222126502_made workoutid nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902222128448_made workoutid in user nullable.resx">
+      <DependentUpon>201902222128448_made workoutid in user nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

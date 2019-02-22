@@ -9,7 +9,7 @@ namespace Fitnetium.Models
     public class Workout
     {
         [Key]
-        public int UserWorkoutID { get; set; }
+        public int? UserWorkoutID { get; set; }
 
         public string Name { get; set; }
         public string Equipent { get; set; }

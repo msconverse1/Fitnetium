@@ -16,7 +16,7 @@ namespace Fitnetium.Models
 
         [ForeignKey("Workout")]
         [Display(Name ="WorkoutID")]
-        public int UserWorkoutID { get; set; }
+        public int? UserWorkoutID { get; set; }
         public Workout Workout { get; set; }
 
         [ForeignKey("ApplicationUser")]

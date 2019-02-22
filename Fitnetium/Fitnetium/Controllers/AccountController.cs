@@ -17,9 +17,10 @@ namespace Fitnetium.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -375,6 +376,14 @@ namespace Fitnetium.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        var Currentuser = context.Users.Where(u => u.Email == info.Email).SingleOrDefault();
+                        User newUser = new User
+                        {
+                            UserName = info.ExternalIdentity.Name,
+                            ApplicationUserId = Currentuser.Id
+                        };
+                        context.User.Add(newUser);
+                        context.SaveChanges();
                         return RedirectToLocal(returnUrl);
                     }
                 }
