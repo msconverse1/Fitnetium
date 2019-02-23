@@ -181,5 +181,20 @@ namespace Fitnetium.Controllers
             }
 
         }
+        public async Task GetWorkoutData()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://wger.de/api/v2/exercise/?language=2"))
+                {
+                    request.Headers.TryAddWithoutValidation("Authorization", "Token c86e854254b62db27cfcc352eb8ead5128456581");
+
+                    var response = await httpClient.SendAsync(request);
+                    var stringResult = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(stringResult);
+
+                }
+            }
+        }
     }
 }
