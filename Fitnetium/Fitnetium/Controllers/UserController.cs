@@ -1,7 +1,10 @@
 ﻿using Fitnetium.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,13 +32,13 @@ namespace Fitnetium.Controllers
 
         // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(User user)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Workout");
             }
             catch
             {
@@ -138,6 +141,45 @@ namespace Fitnetium.Controllers
                 weightStatus = "Underweight";
             }
             return weightStatus;
+        }
+        public async Task RecipeLookUp(string input)
+        {
+            string API = "e3e0781f8229c421c4bc8a3293094f86";
+            List<Recipe> recipes = new List<Recipe>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://api.edamam.com");
+                var response = await client.GetAsync($"search?q={input}&app_id={API}&from0&to=3&calories=480-722&health=alcohol-free");
+                response.EnsureSuccessStatusCode();
+
+                var stringResult = await response.Content.ReadAsStringAsync();
+                var json = JObject.Parse(stringResult);
+                for (int i = 0; i < 3; i++)
+                {
+                    var Label = json["hits"][i]["recipe"]["label"].ToString();
+                    var Image = json["hits"][i]["recipe"]["image"].ToString();
+                    var IngredCount = json["hits"][i]["recipe"]["ingredients"].Count();
+                    string[] itemToSplit = new string[IngredCount];
+                    for (int j = 0; j < IngredCount; j++)
+                    {
+                        string fullName = json["hits"][i]["recipe"]["ingredients"][j]["text"].ToString();
+                    }
+                    var CookTime = json["hits"][i]["recipe"]["totaltime"].ToObject<float>();
+                    var Calories = json["hits"][i]["recipe"]["calories"].ToObject<float>();
+
+                    Recipe recipe = new Recipe()
+                    {
+                        RecipeName = Label,
+                        Image = Image,
+                        Ingredients = itemToSplit,
+                        CookTime = CookTime,
+                        Calories = Calories
+                    };
+                    recipes.Add(recipe);
+                }
+
+            }
+
         }
     }
 }

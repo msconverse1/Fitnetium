@@ -384,7 +384,7 @@ namespace Fitnetium.Controllers
                         };
                         context.User.Add(newUser);
                         context.SaveChanges();
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Create","User");
                     }
                 }
                 AddErrors(result);

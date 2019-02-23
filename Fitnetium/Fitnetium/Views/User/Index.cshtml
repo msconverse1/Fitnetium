@@ -1,0 +1,46 @@
+﻿@model Fitnetium.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="col-md-4">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkOutType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkOutType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.hieght)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.hieght)
+        </dd>
+    </dl>
+</div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = Model.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+        </p>
+
+
