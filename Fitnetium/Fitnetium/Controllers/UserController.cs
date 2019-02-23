@@ -89,10 +89,11 @@ namespace Fitnetium.Controllers
                 return View();
             }
         }
-        //public float CaloriesBurned()
-        //{
-        //    var energyExpenditure = .0175 * MethodAccessException * (weight * 2.2f);
-        //}
+        public double CaloriesBurned(User user)
+        {
+            double energyExpenditure = .0175 * (user.weight * 2.2f);
+            return energyExpenditure;
+        }
         public double[] CalHeratRateZones(User user) 
         {
             var maxHearRate = 220 - user.age;
@@ -177,9 +178,7 @@ namespace Fitnetium.Controllers
                     };
                     recipes.Add(recipe);
                 }
-
             }
-
         }
         public async Task GetWorkoutData()
         {

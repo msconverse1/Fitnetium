@@ -197,10 +197,19 @@
     <Compile Include="Migrations\201902222346523_Changes to User table.Designer.cs">
       <DependentUpon>201902222346523_Changes to User table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902231914085_Table for Met from activity.cs" />
+    <Compile Include="Migrations\201902231914085_Table for Met from activity.Designer.cs">
+      <DependentUpon>201902231914085_Table for Met from activity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902231915476_MetValues added Intensity.cs" />
+    <Compile Include="Migrations\201902231915476_MetValues added Intensity.Designer.cs">
+      <DependentUpon>201902231915476_MetValues added Intensity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MetValues.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Workout.cs" />
@@ -297,6 +306,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902222346523_Changes to User table.resx">
       <DependentUpon>201902222346523_Changes to User table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902231914085_Table for Met from activity.resx">
+      <DependentUpon>201902231914085_Table for Met from activity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902231915476_MetValues added Intensity.resx">
+      <DependentUpon>201902231915476_MetValues added Intensity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

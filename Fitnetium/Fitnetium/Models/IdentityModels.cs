@@ -32,5 +32,6 @@ namespace Fitnetium.Models
         public DbSet<User> User { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<MetValues> MetValues { get; set; }
     }
 }
