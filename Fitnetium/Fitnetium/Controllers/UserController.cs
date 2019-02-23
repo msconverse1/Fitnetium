@@ -12,6 +12,7 @@ namespace Fitnetium.Controllers
 {
     public class UserController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         // GET: User
         public ActionResult Index()
         {
@@ -91,7 +92,9 @@ namespace Fitnetium.Controllers
         }
         public double CaloriesBurned(User user)
         {
-            double energyExpenditure = .0175 * (user.weight * 2.2f);
+            var METValues = db.MetValues.Where(m => m.Activities == user.WorkOutType).Where(t=>t.Intensity == user.WorkOutType).FirstOrDefault();
+            var Met = Convert.ToDouble(METValues.Intensity);
+            double energyExpenditure = .0175 * Met * (user.weight * 2.2f);
             return energyExpenditure;
         }
         public double[] CalHeratRateZones(User user) 
