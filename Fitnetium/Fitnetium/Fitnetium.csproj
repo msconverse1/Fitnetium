@@ -178,6 +178,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
+    <Compile Include="EnumEditorHtmlHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,10 @@
     <Compile Include="Migrations\201902231915476_MetValues added Intensity.cs" />
     <Compile Include="Migrations\201902231915476_MetValues added Intensity.Designer.cs">
       <DependentUpon>201902231915476_MetValues added Intensity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251504235_changed workout type to a Enum.cs" />
+    <Compile Include="Migrations\201902251504235_changed workout type to a Enum.Designer.cs">
+      <DependentUpon>201902251504235_changed workout type to a Enum.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -312,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902231915476_MetValues added Intensity.resx">
       <DependentUpon>201902231915476_MetValues added Intensity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251504235_changed workout type to a Enum.resx">
+      <DependentUpon>201902251504235_changed workout type to a Enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

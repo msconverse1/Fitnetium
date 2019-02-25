@@ -1,4 +1,5 @@
 ﻿using Fitnetium.Models;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Fitnetium.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -37,8 +39,14 @@ namespace Fitnetium.Controllers
         {
             try
             {
+                var userLoggedin = User.Identity.GetUserId();
                 // TODO: Add insert logic here
-
+                var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+               users.age =  user.age;
+               users.weight =  user.weight;
+               users.hieght =  user.hieght;
+                users.category = user.category;
+                db.SaveChanges();
                 return RedirectToAction("Index","Workout");
             }
             catch
@@ -92,7 +100,7 @@ namespace Fitnetium.Controllers
         }
         public double CaloriesBurned(User user)
         {
-            var METValues = db.MetValues.Where(m => m.Activities == user.WorkOutType).Where(t=>t.Intensity == user.WorkOutType).FirstOrDefault();
+            var METValues = db.MetValues.Where(m => m.Activities == user.WorkOutType.ToString()).Where(t=>t.Intensity == user.WorkOutType.ToString()).FirstOrDefault();
             var Met = Convert.ToDouble(METValues.Intensity);
             double energyExpenditure = .0175 * Met * (user.weight * 2.2f);
             return energyExpenditure;
@@ -146,7 +154,7 @@ namespace Fitnetium.Controllers
             }
             return weightStatus;
         }
-        public async Task RecipeLookUp(string input)
+        public async Task RecipeLookUp(string input,User user)
         {
             string API = "e3e0781f8229c421c4bc8a3293094f86";
             List<Recipe> recipes = new List<Recipe>();
@@ -183,20 +191,29 @@ namespace Fitnetium.Controllers
                 }
             }
         }
-        public async Task GetWorkoutData()
+        public async Task<List<string[]>> GetWorkoutData()
         {
             using (var httpClient = new HttpClient())
             {
-                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://wger.de/api/v2/exercise/?language=2"))
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://wger.de/api/v2/exercisecategory/"))
                 {
                     request.Headers.TryAddWithoutValidation("Authorization", "Token c86e854254b62db27cfcc352eb8ead5128456581");
 
                     var response = await httpClient.SendAsync(request);
                     var stringResult = await response.Content.ReadAsStringAsync();
                     var json = JObject.Parse(stringResult);
+                    List<string[]> exercisecategory = new List<string[]>();
 
+                    for (int i = 0; i < json["results"].Count(); i++)
+                    {
+                        string[] temp = new string[2];
+                        temp[0] = json["results"][i]["id"].ToString();
+                        temp[1] = json["results"][i]["name"].ToString();
+                        exercisecategory.Add(temp);
+                    }
+                    return exercisecategory;
                 }
             }
-        }
+         }
     }
 }
