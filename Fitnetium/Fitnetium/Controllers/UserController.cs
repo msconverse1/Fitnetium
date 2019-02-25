@@ -39,15 +39,23 @@ namespace Fitnetium.Controllers
         {
             try
             {
-                var userLoggedin = User.Identity.GetUserId();
-                // TODO: Add insert logic here
-                var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+              var userLoggedin = User.Identity.GetUserId();
+             
+               var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
                users.age =  user.age;
                users.weight =  user.weight;
-               users.hieght =  user.hieght;
-                users.category = user.category;
-                db.SaveChanges();
-                return RedirectToAction("Index","Workout");
+                
+               users.hieght = (float)user.Heightset;
+               user.hieght = (float)user.Heightset;
+               users.Category = user.Category;
+               double[] HeartRateZone = CalHeratRateZones(user);
+               users.LowHHR = HeartRateZone[0];
+               users.HighHHR = HeartRateZone[1];
+               string[] BMI = CalBMI(user);
+               users.BMIPercent = Convert.ToDouble(BMI[0]);
+               users.BMIType = BMI[1];
+               db.SaveChanges();
+               return RedirectToAction("Index","Workout");
             }
             catch
             {
@@ -132,27 +140,28 @@ namespace Fitnetium.Controllers
             heartzone[1] = highHHR;
             return heartzone;
         }
-        public string CalBMI(User user)
+        public string[] CalBMI(User user)
         {
-            var BMI = (user.weight / ((65) ^ 2)) * 703;
-            string weightStatus;
-            if (BMI >= 30)
+            string[] BMI = new string[2];
+            BMI[0] = (((user.weight / user.hieght) /user.hieght) * 703).ToString();
+            
+            if (Convert.ToDouble(BMI[0]) >= 30)
             {
-                weightStatus = "Obese";
+                BMI[1] = "Obese";
             }
-            else if(BMI >=25 && BMI <=29.9)
+            else if(Convert.ToDouble(BMI[0]) >= 25 && Convert.ToDouble(BMI[0]) <= 29.9)
             {
-                weightStatus = "Overweight";
+                BMI[1] = "Overweight";
             }
-            else if(BMI >=18.5 && BMI <=24.9)
+            else if(Convert.ToDouble(BMI[0]) >= 18.5 && Convert.ToDouble(BMI[0]) <= 24.9)
             {
-                weightStatus = "Normal";
+                BMI[1] = "Normal";
             }
             else
             {
-                weightStatus = "Underweight";
+                BMI[1] = "Underweight";
             }
-            return weightStatus;
+            return BMI;
         }
         public async Task RecipeLookUp(string input,User user)
         {

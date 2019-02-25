@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fitnetium.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,17 @@ namespace Fitnetium.Controllers
 {
     public class WorkoutController : Controller
     {
+        ApplicationDbContext db;
+        public WorkoutController()
+        {
+            db = new ApplicationDbContext();
+        }
         // GET: Workout
         public ActionResult Index()
         {
-            return View();
+            var workouts = db.Workouts.ToList();
+
+            return View(workouts);
         }
 
         // GET: Workout/Details/5

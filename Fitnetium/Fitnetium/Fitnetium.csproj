@@ -210,6 +210,14 @@
     <Compile Include="Migrations\201902251504235_changed workout type to a Enum.Designer.cs">
       <DependentUpon>201902251504235_changed workout type to a Enum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902251634218_Added BMI and HeartRateZones to User table.cs" />
+    <Compile Include="Migrations\201902251634218_Added BMI and HeartRateZones to User table.Designer.cs">
+      <DependentUpon>201902251634218_Added BMI and HeartRateZones to User table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902251654534_Added HeightSet to User table.cs" />
+    <Compile Include="Migrations\201902251654534_Added HeightSet to User table.Designer.cs">
+      <DependentUpon>201902251654534_Added HeightSet to User table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -320,6 +328,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902251504235_changed workout type to a Enum.resx">
       <DependentUpon>201902251504235_changed workout type to a Enum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251634218_Added BMI and HeartRateZones to User table.resx">
+      <DependentUpon>201902251634218_Added BMI and HeartRateZones to User table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902251654534_Added HeightSet to User table.resx">
+      <DependentUpon>201902251654534_Added HeightSet to User table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
