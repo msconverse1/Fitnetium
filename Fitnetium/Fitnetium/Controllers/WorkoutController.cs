@@ -21,8 +21,10 @@ namespace Fitnetium.Controllers
         // GET: Workout
         public ActionResult Index()
         {
+            var userLoggedin = User.Identity.GetUserId();
+            var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
 
-            var workouts = db.Workouts.ToList();
+            var workouts = db.Workouts.Where(w=>w.UserID == users.ID).ToList();
 
             return View(workouts);
         }
@@ -30,7 +32,21 @@ namespace Fitnetium.Controllers
         // GET: Workout/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var workout = db.Workouts.Where(d => d.UserWorkoutID == id).SingleOrDefault();
+
+            WorkoutPerDay workoutPerDay = new WorkoutPerDay
+            {
+                Workout = workout,
+                Monday = db.Mondays.Where(m => m.UserID == workout.UserID).ToList(),
+                Tuesday = db.Tuesdays.Where(m => m.UserID == workout.UserID).ToList(),
+                Wednesday = db.Wednesdays.Where(m => m.UserID == workout.UserID).ToList(),
+                Thursday = db.Thursdays.Where(m => m.UserID == workout.UserID).ToList(),
+                Friday = db.Fridays.Where(m => m.UserID == workout.UserID).ToList(),
+                Saturday = db.Saturdays.Where(m => m.UserID == workout.UserID).ToList(),
+                Sunday = db.Sundays.Where(m => m.UserID == workout.UserID).ToList(),
+            };
+
+            return View(workoutPerDay);
         }
 
         // GET: Workout/Create
@@ -52,8 +68,6 @@ namespace Fitnetium.Controllers
 
                 await Mondayworkout(users,workout);
 
-         
-             
                 db.Workouts.Add(workout);
                 db.SaveChanges();
                 // TODO: Add insert logic here

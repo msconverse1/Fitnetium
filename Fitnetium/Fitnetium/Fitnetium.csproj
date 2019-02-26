@@ -249,6 +249,7 @@
     <Compile Include="Models\Sunday.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Workout.cs" />
+    <Compile Include="Models\WorkoutPerDay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +314,7 @@
     <Content Include="Views\Workout\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Workout\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
