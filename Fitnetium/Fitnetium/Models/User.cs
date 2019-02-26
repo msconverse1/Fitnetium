@@ -91,10 +91,6 @@ namespace Fitnetium.Models
         public float weight { get; set; }
         public Height Heightset { get; set; }
         public float hieght { get;set; }
-        [ForeignKey("Workout")]
-        [Display(Name ="WorkoutID")]
-        public int? UserWorkoutID { get; set; }
-        public Workout Workout { get; set; }
 
         [ForeignKey("ApplicationUser")]
         [Display(Name = "AppID")]

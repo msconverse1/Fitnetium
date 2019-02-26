@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201902251654534_Added HeightSet to User table.Designer.cs">
       <DependentUpon>201902251654534_Added HeightSet to User table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902252215181_Added Display Names.cs" />
+    <Compile Include="Migrations\201902252215181_Added Display Names.Designer.cs">
+      <DependentUpon>201902252215181_Added Display Names.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902252227208_Added FK to User for different workouts everyday.cs" />
+    <Compile Include="Migrations\201902252227208_Added FK to User for different workouts everyday.Designer.cs">
+      <DependentUpon>201902252227208_Added FK to User for different workouts everyday.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -334,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902251654534_Added HeightSet to User table.resx">
       <DependentUpon>201902251654534_Added HeightSet to User table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902252215181_Added Display Names.resx">
+      <DependentUpon>201902252215181_Added Display Names.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902252227208_Added FK to User for different workouts everyday.resx">
+      <DependentUpon>201902252227208_Added FK to User for different workouts everyday.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

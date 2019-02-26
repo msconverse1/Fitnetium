@@ -200,29 +200,6 @@ namespace Fitnetium.Controllers
                 }
             }
         }
-        public async Task<List<string[]>> GetWorkoutData()
-        {
-            using (var httpClient = new HttpClient())
-            {
-                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://wger.de/api/v2/exercisecategory/"))
-                {
-                    request.Headers.TryAddWithoutValidation("Authorization", "Token c86e854254b62db27cfcc352eb8ead5128456581");
-
-                    var response = await httpClient.SendAsync(request);
-                    var stringResult = await response.Content.ReadAsStringAsync();
-                    var json = JObject.Parse(stringResult);
-                    List<string[]> exercisecategory = new List<string[]>();
-
-                    for (int i = 0; i < json["results"].Count(); i++)
-                    {
-                        string[] temp = new string[2];
-                        temp[0] = json["results"][i]["id"].ToString();
-                        temp[1] = json["results"][i]["name"].ToString();
-                        exercisecategory.Add(temp);
-                    }
-                    return exercisecategory;
-                }
-            }
-         }
+       
     }
 }
