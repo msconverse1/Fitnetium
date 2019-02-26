@@ -46,20 +46,14 @@ namespace Fitnetium.Controllers
             try
             {
                 var userLoggedin = User.Identity.GetUserId();
-             var test=  await GetWorkoutData(workout);
-                List<JToken> workoutName = new List<JToken>();
-                for (int i = 0; i < test.Count(); i++)
-                {
-                    var names = test[i]["name"].ToString();
-                    if (names != "" && names != "Abcd" && names != "Awesome"&& names != "Test" && names != "What")
-                    {
-                        workoutName.Add(names);
-
-                    }
-                }
                 var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
                 workout.UserID = users.ID;
                 workout.User = users;
+
+                await Mondayworkout(users,workout);
+
+         
+             
                 db.Workouts.Add(workout);
                 db.SaveChanges();
                 // TODO: Add insert logic here
@@ -704,6 +698,736 @@ namespace Fitnetium.Controllers
                 }
 
                 return Holder;
+            }
+        }
+
+     async public Task Mondayworkout(User users,Workout workout)
+        {
+            Monday monday = new Monday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {              
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+
+                    }
+                }               
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                         ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    
+                    monday.Name = workoutName[ran];
+                    monday.Reps = 10;
+                    monday.Sets = 3;
+                    monday.Weight = 10;
+
+                    monday.UserID = users.ID;
+                    temp = ran;
+                    db.Mondays.Add(monday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {  
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    monday.Name = workoutName[ran];
+                    monday.Reps = 8;
+                    monday.Sets = 5;
+                    monday.Weight = 25;
+                    monday.UserID = users.ID;
+                    temp = ran;
+                    db.Mondays.Add(monday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {             
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    monday.Name = workoutName[ran];
+                    monday.Reps = 5;
+                    monday.Sets = 8;
+                    monday.Weight = 45;
+                    monday.UserID = users.ID;
+                    temp = ran;
+                    db.Mondays.Add(monday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void TuesdayWorkout(User users, Workout workout)
+        {
+            
+            Tuesday tuesday = new Tuesday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    tuesday.Name = workoutName[ran];
+                    tuesday.Reps = 10;
+                    tuesday.Sets = 3;
+                    tuesday.Weight = 10;
+                    tuesday.UserID = users.ID;
+                    temp = ran;
+                    db.Tuesdays.Add(tuesday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    tuesday.Name = workoutName[ran];
+                    tuesday.Reps = 8;
+                    tuesday.Sets = 5;
+                    tuesday.Weight = 25;
+                    tuesday.UserID = users.ID;
+                    temp = ran;
+                    db.Tuesdays.Add(tuesday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    tuesday.Name = workoutName[ran];
+                    tuesday.Reps = 5;
+                    tuesday.Sets = 8;
+                    tuesday.Weight = 45;
+                    tuesday.UserID = users.ID;
+                    temp = ran;
+                    db.Tuesdays.Add(tuesday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void WedndayWorkout(User users, Workout workout)
+        { 
+            Wednesday wednesday = new Wednesday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    wednesday.Name = workoutName[ran];
+                    wednesday.Reps = 10;
+                    wednesday.Sets = 3;
+                    wednesday.Weight = 10;
+                    wednesday.UserID = users.ID;
+                    db.Wednesdays.Add(wednesday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    wednesday.Name = workoutName[ran];
+                    wednesday.Reps = 8;
+                    wednesday.Sets = 5;
+                    wednesday.Weight = 25;
+                    wednesday.UserID = users.ID;
+                    db.Wednesdays.Add(wednesday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    wednesday.Name = workoutName[ran];
+                    wednesday.Reps = 5;
+                    wednesday.Sets = 8;
+                    wednesday.Weight = 45;
+                    wednesday.UserID = users.ID;
+                    db.Wednesdays.Add(wednesday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void ThursdayWorkout(User users, Workout workout)
+     {
+            Thursday thursday = new Thursday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    thursday.Name = workoutName[ran];
+                    thursday.Reps = 10;
+                    thursday.Sets = 3;
+                    thursday.Weight = 10;
+                    thursday.UserID = users.ID;
+                    db.Thursdays.Add(thursday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    thursday.Name = workoutName[ran];
+                    thursday.Reps = 8;
+                    thursday.Sets = 5;
+                    thursday.Weight = 25;
+                    thursday.UserID = users.ID;
+                    db.Thursdays.Add(thursday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    thursday.Name = workoutName[ran];
+                    thursday.Reps = 5;
+                    thursday.Sets = 8;
+                    thursday.Weight = 45;
+                    thursday.UserID = users.ID;
+                    db.Thursdays.Add(thursday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void FridayWorkout(User users, Workout workout)
+        {
+            Friday friday = new Friday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    friday.Name = workoutName[ran];
+                    friday.Reps = 10;
+                    friday.Sets = 3;
+                    friday.Weight = 10;
+                    friday.UserID = users.ID;
+                    db.Fridays.Add(friday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    friday.Name = workoutName[ran];
+                    friday.Reps = 8;
+                    friday.Sets = 5;
+                    friday.Weight = 25;
+                    friday.UserID = users.ID;
+                    db.Fridays.Add(friday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    friday.Name = workoutName[ran];
+                    friday.Reps = 5;
+                    friday.Sets = 8;
+                    friday.Weight = 45;
+                    friday.UserID = users.ID;
+                    db.Fridays.Add(friday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void SaturdayWorkout(User users, Workout workout)
+        {
+            Saturday saturday = new Saturday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    saturday.Name = workoutName[ran];
+                    saturday.Reps = 10;
+                    saturday.Sets = 3;
+                    saturday.Weight = 10;
+                    saturday.UserID = users.ID;
+                    temp = ran;
+                    db.Saturdays.Add(saturday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    saturday.Name = workoutName[ran];
+                    saturday.Reps = 8;
+                    saturday.Sets = 5;
+                    saturday.Weight = 25;
+                    saturday.UserID = users.ID;
+                    temp = ran;
+                    db.Saturdays.Add(saturday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    saturday.Name = workoutName[ran];
+                    saturday.Reps = 5;
+                    saturday.Sets = 8;
+                    saturday.Weight = 45;
+                    saturday.UserID = users.ID;
+                    temp = ran;
+                    db.Saturdays.Add(saturday);
+                    db.SaveChanges();
+                }
+            }
+        }
+     async public void SundayWorkout(User users, Workout workout)
+        {
+            Sunday sunday = new Sunday();
+            Random random = new Random();
+            if (users.Category.ToString() == "Low")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                int temp = 0;
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+
+                    sunday.Name = workoutName[ran];
+                    sunday.Reps = 10;
+                    sunday.Sets = 3;
+                    sunday.Weight = 10;
+                    sunday.UserID = users.ID;
+                    temp = ran;
+                    db.Sundays.Add(sunday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Moderate")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    sunday.Name = workoutName[ran];
+                    sunday.Reps = 8;
+                    sunday.Sets = 5;
+                    sunday.Weight = 25;
+                    sunday.UserID = users.ID;
+                    temp = ran;
+                    db.Sundays.Add(sunday);
+                    db.SaveChanges();
+                }
+            }
+            if (users.Category.ToString() == "Vigorous")
+            {
+                var test = await GetWorkoutData(workout);
+                List<string> workoutName = new List<string>();
+                for (int i = 0; i < test.Count(); i++)
+                {
+                    var names = test[i]["name"].ToString();
+                    if (names != "" && names != "Abcd" && names != "Awesome" && names != "Test" && names != "What")
+                    {
+                        if (!workoutName.Contains(names))
+                        {
+                            workoutName.Add(names);
+                        }
+                    }
+                }
+                int temp = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    int ran;
+                    do
+                    {
+                        ran = random.Next(workoutName.Count());
+                    } while (ran == temp);
+                    sunday.Name = workoutName[ran];
+                    sunday.Reps = 5;
+                    sunday.Sets = 8;
+                    sunday.Weight = 45;
+                    sunday.UserID = users.ID;
+                    temp = ran;
+                    db.Sundays.Add(sunday);
+                    db.SaveChanges();
+                }
             }
         }
     }

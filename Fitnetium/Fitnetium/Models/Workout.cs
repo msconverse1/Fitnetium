@@ -30,16 +30,10 @@ namespace Fitnetium.Models
             Shoulders=13
 
         }
+        [Display(Name ="Day One Workout")]
         public WorkoutType Category { get; set; }
         [Display(Name ="Name of Workout")]
         public string Name { get; set; }
-        public string Equipent { get; set; }
-        public string MainMuscles { get; set; }
-        public string SencMuscles { get; set; }
-        public int? Sets { get; set; }
-        public int? Reps { get; set; }
-        
-        public float? Weight { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

@@ -33,5 +33,12 @@ namespace Fitnetium.Models
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<MetValues> MetValues { get; set; }
+        public DbSet<Monday> Mondays { get; set; }
+        public DbSet<Tuesday> Tuesdays { get; set; }
+        public DbSet<Wednesday> Wednesdays { get; set; }
+        public DbSet<Thursday> Thursdays { get; set; }
+        public DbSet<Friday> Fridays { get; set; }
+        public DbSet<Saturday> Saturdays { get; set; }
+        public DbSet<Sunday> Sundays { get; set; }
     }
 }

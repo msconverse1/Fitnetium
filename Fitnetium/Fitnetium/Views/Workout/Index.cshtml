@@ -14,25 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Equipent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MainMuscles)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SencMuscles)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sets)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reps)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Weight)
-        </th>
-        <th></th>
+       
+       
+      
     </tr>
 
 @foreach (var item in Model) {
@@ -40,24 +24,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Equipent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MainMuscles)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SencMuscles)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sets)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Reps)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserWorkoutID }) |
             @Html.ActionLink("Details", "Details", new { id=item.UserWorkoutID }) |

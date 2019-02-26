@@ -226,12 +226,27 @@
     <Compile Include="Migrations\201902252227208_Added FK to User for different workouts everyday.Designer.cs">
       <DependentUpon>201902252227208_Added FK to User for different workouts everyday.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902261726488_Added Weekly work out tables.cs" />
+    <Compile Include="Migrations\201902261726488_Added Weekly work out tables.Designer.cs">
+      <DependentUpon>201902261726488_Added Weekly work out tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902261742438_Added thursday to table.cs" />
+    <Compile Include="Migrations\201902261742438_Added thursday to table.Designer.cs">
+      <DependentUpon>201902261742438_Added thursday to table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Monday.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Tuesday.cs" />
+    <Compile Include="Models\Wednesday.cs" />
+    <Compile Include="Models\Thursday.cs" />
+    <Compile Include="Models\Friday.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Saturday.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetValues.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\Sunday.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Workout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -348,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902252227208_Added FK to User for different workouts everyday.resx">
       <DependentUpon>201902252227208_Added FK to User for different workouts everyday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261726488_Added Weekly work out tables.resx">
+      <DependentUpon>201902261726488_Added Weekly work out tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902261742438_Added thursday to table.resx">
+      <DependentUpon>201902261742438_Added thursday to table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
