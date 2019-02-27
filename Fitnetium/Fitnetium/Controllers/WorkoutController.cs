@@ -37,13 +37,13 @@ namespace Fitnetium.Controllers
             WorkoutPerDay workoutPerDay = new WorkoutPerDay
             {
                 Workout = workout,
-                Monday = db.Mondays.Where(m => m.UserID == workout.UserID).ToList(),
-                Tuesday = db.Tuesdays.Where(m => m.UserID == workout.UserID).ToList(),
-                Wednesday = db.Wednesdays.Where(m => m.UserID == workout.UserID).ToList(),
-                Thursday = db.Thursdays.Where(m => m.UserID == workout.UserID).ToList(),
-                Friday = db.Fridays.Where(m => m.UserID == workout.UserID).ToList(),
-                Saturday = db.Saturdays.Where(m => m.UserID == workout.UserID).ToList(),
-                Sunday = db.Sundays.Where(m => m.UserID == workout.UserID).ToList(),
+                Monday = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Tuesday = db.Tuesdays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Wednesday = db.Wednesdays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Thursday = db.Thursdays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Friday = db.Fridays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Saturday = db.Saturdays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
+                Sunday = db.Sundays.Where(m => m.WorkoutID == workout.UserWorkoutID).ToList(),
             };
 
             return View(workoutPerDay);
@@ -65,10 +65,9 @@ namespace Fitnetium.Controllers
                 var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
                 workout.UserID = users.ID;
                 workout.User = users;
-
-                await Mondayworkout(users,workout);
-
                 db.Workouts.Add(workout);
+                db.SaveChanges();
+                await Mondayworkout(users,workout);
                 db.SaveChanges();
                 // TODO: Add insert logic here
 
@@ -123,6 +122,35 @@ namespace Fitnetium.Controllers
                 return View();
             }
         }
+        
+        public ActionResult CaloriesBurnedMonday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return View(model);
+        }
+        public ActionResult VisualizeCaloriesBurnedMonday(int? id)
+        {
+ 
+
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+
+            return Json(List(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+
+        }
+        public List<Monday> List(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).ToList();
+            return mondays;
+        }
+
+    public double CaloriesBurned(User user,int mets)
+    {
+        double energyExpenditure = .0175 * mets * (user.weight * 2.2f);
+        return energyExpenditure;
+    }
+        //get list of workouts
         public async Task<List<JToken>> GetWorkoutData(Workout workout)
         {
             using (var httpClient = new HttpClient())
@@ -714,7 +742,7 @@ namespace Fitnetium.Controllers
                 return Holder;
             }
         }
-
+        //list of daliy workouts
      async public Task Mondayworkout(User users,Workout workout)
         {
             Monday monday = new Monday();
@@ -748,8 +776,9 @@ namespace Fitnetium.Controllers
                     monday.Reps = 10;
                     monday.Sets = 3;
                     monday.Weight = 10;
-
-                    monday.UserID = users.ID;
+                    monday.Met = 3;
+                    monday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    monday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Mondays.Add(monday);
                     db.SaveChanges();
@@ -782,7 +811,9 @@ namespace Fitnetium.Controllers
                     monday.Reps = 8;
                     monday.Sets = 5;
                     monday.Weight = 25;
-                    monday.UserID = users.ID;
+                    monday.Met = 6;
+                    monday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    monday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Mondays.Add(monday);
                     db.SaveChanges();
@@ -815,7 +846,9 @@ namespace Fitnetium.Controllers
                     monday.Reps = 5;
                     monday.Sets = 8;
                     monday.Weight = 45;
-                    monday.UserID = users.ID;
+                    monday.Met = 9;
+                    monday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    monday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Mondays.Add(monday);
                     db.SaveChanges();
@@ -824,7 +857,6 @@ namespace Fitnetium.Controllers
         }
      async public void TuesdayWorkout(User users, Workout workout)
         {
-            
             Tuesday tuesday = new Tuesday();
             Random random = new Random();
             if (users.Category.ToString() == "Low")
@@ -855,10 +887,13 @@ namespace Fitnetium.Controllers
                     tuesday.Reps = 10;
                     tuesday.Sets = 3;
                     tuesday.Weight = 10;
-                    tuesday.UserID = users.ID;
+                    tuesday.Met = 3;
+                    tuesday.CaloriesBurned =Math.Round( CaloriesBurned(users, 3));
+                    tuesday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Tuesdays.Add(tuesday);
                     db.SaveChanges();
+                    ran = temp;
                 }
             }
             if (users.Category.ToString() == "Moderate")
@@ -888,10 +923,13 @@ namespace Fitnetium.Controllers
                     tuesday.Reps = 8;
                     tuesday.Sets = 5;
                     tuesday.Weight = 25;
-                    tuesday.UserID = users.ID;
+                    tuesday.Met = 6;
+                    tuesday.CaloriesBurned =Math.Round(CaloriesBurned(users, 6));
+                    tuesday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Tuesdays.Add(tuesday);
                     db.SaveChanges();
+                    ran = temp;
                 }
             }
             if (users.Category.ToString() == "Vigorous")
@@ -921,10 +959,13 @@ namespace Fitnetium.Controllers
                     tuesday.Reps = 5;
                     tuesday.Sets = 8;
                     tuesday.Weight = 45;
-                    tuesday.UserID = users.ID;
+                    tuesday.Met = 9;
+                    tuesday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    tuesday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Tuesdays.Add(tuesday);
                     db.SaveChanges();
+                    ran = temp;
                 }
             }
         }
@@ -960,7 +1001,9 @@ namespace Fitnetium.Controllers
                     wednesday.Reps = 10;
                     wednesday.Sets = 3;
                     wednesday.Weight = 10;
-                    wednesday.UserID = users.ID;
+                    wednesday.Met = 3;
+                    wednesday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    wednesday.WorkoutID = workout.UserWorkoutID;
                     db.Wednesdays.Add(wednesday);
                     db.SaveChanges();
                 }
@@ -992,7 +1035,9 @@ namespace Fitnetium.Controllers
                     wednesday.Reps = 8;
                     wednesday.Sets = 5;
                     wednesday.Weight = 25;
-                    wednesday.UserID = users.ID;
+                    wednesday.Met = 6;
+                    wednesday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    wednesday.WorkoutID = workout.UserWorkoutID;
                     db.Wednesdays.Add(wednesday);
                     db.SaveChanges();
                 }
@@ -1024,7 +1069,9 @@ namespace Fitnetium.Controllers
                     wednesday.Reps = 5;
                     wednesday.Sets = 8;
                     wednesday.Weight = 45;
-                    wednesday.UserID = users.ID;
+                    wednesday.Met = 9;
+                    wednesday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    wednesday.WorkoutID = workout.UserWorkoutID;
                     db.Wednesdays.Add(wednesday);
                     db.SaveChanges();
                 }
@@ -1062,7 +1109,9 @@ namespace Fitnetium.Controllers
                     thursday.Reps = 10;
                     thursday.Sets = 3;
                     thursday.Weight = 10;
-                    thursday.UserID = users.ID;
+                    thursday.Met = 3;
+                    thursday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    thursday.WorkoutID = workout.UserWorkoutID;
                     db.Thursdays.Add(thursday);
                     db.SaveChanges();
                 }
@@ -1094,7 +1143,9 @@ namespace Fitnetium.Controllers
                     thursday.Reps = 8;
                     thursday.Sets = 5;
                     thursday.Weight = 25;
-                    thursday.UserID = users.ID;
+                    thursday.Met = 3;
+                    thursday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    thursday.WorkoutID = workout.UserWorkoutID;
                     db.Thursdays.Add(thursday);
                     db.SaveChanges();
                 }
@@ -1126,7 +1177,9 @@ namespace Fitnetium.Controllers
                     thursday.Reps = 5;
                     thursday.Sets = 8;
                     thursday.Weight = 45;
-                    thursday.UserID = users.ID;
+                    thursday.Met = 3;
+                    thursday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    thursday.WorkoutID = workout.UserWorkoutID;
                     db.Thursdays.Add(thursday);
                     db.SaveChanges();
                 }
@@ -1164,7 +1217,9 @@ namespace Fitnetium.Controllers
                     friday.Reps = 10;
                     friday.Sets = 3;
                     friday.Weight = 10;
-                    friday.UserID = users.ID;
+                    friday.Met = 3;
+                    friday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    friday.WorkoutID = workout.UserWorkoutID;
                     db.Fridays.Add(friday);
                     db.SaveChanges();
                 }
@@ -1196,7 +1251,9 @@ namespace Fitnetium.Controllers
                     friday.Reps = 8;
                     friday.Sets = 5;
                     friday.Weight = 25;
-                    friday.UserID = users.ID;
+                    friday.Met = 6;
+                    friday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    friday.WorkoutID = workout.UserWorkoutID;
                     db.Fridays.Add(friday);
                     db.SaveChanges();
                 }
@@ -1228,7 +1285,9 @@ namespace Fitnetium.Controllers
                     friday.Reps = 5;
                     friday.Sets = 8;
                     friday.Weight = 45;
-                    friday.UserID = users.ID;
+                    friday.Met = 9;
+                    friday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    friday.WorkoutID = workout.UserWorkoutID;
                     db.Fridays.Add(friday);
                     db.SaveChanges();
                 }
@@ -1266,7 +1325,9 @@ namespace Fitnetium.Controllers
                     saturday.Reps = 10;
                     saturday.Sets = 3;
                     saturday.Weight = 10;
-                    saturday.UserID = users.ID;
+                    saturday.Met = 3;
+                    saturday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    saturday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Saturdays.Add(saturday);
                     db.SaveChanges();
@@ -1299,7 +1360,9 @@ namespace Fitnetium.Controllers
                     saturday.Reps = 8;
                     saturday.Sets = 5;
                     saturday.Weight = 25;
-                    saturday.UserID = users.ID;
+                    saturday.Met = 6;
+                    saturday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    saturday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Saturdays.Add(saturday);
                     db.SaveChanges();
@@ -1332,7 +1395,9 @@ namespace Fitnetium.Controllers
                     saturday.Reps = 5;
                     saturday.Sets = 8;
                     saturday.Weight = 45;
-                    saturday.UserID = users.ID;
+                    saturday.Met = 9;
+                    saturday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    saturday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Saturdays.Add(saturday);
                     db.SaveChanges();
@@ -1371,7 +1436,9 @@ namespace Fitnetium.Controllers
                     sunday.Reps = 10;
                     sunday.Sets = 3;
                     sunday.Weight = 10;
-                    sunday.UserID = users.ID;
+                    sunday.Met = 3;
+                    sunday.CaloriesBurned = Math.Round(CaloriesBurned(users, 3));
+                    sunday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Sundays.Add(sunday);
                     db.SaveChanges();
@@ -1404,7 +1471,9 @@ namespace Fitnetium.Controllers
                     sunday.Reps = 8;
                     sunday.Sets = 5;
                     sunday.Weight = 25;
-                    sunday.UserID = users.ID;
+                    sunday.Met = 6;
+                    sunday.CaloriesBurned = Math.Round(CaloriesBurned(users, 6));
+                    sunday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Sundays.Add(sunday);
                     db.SaveChanges();
@@ -1437,7 +1506,9 @@ namespace Fitnetium.Controllers
                     sunday.Reps = 5;
                     sunday.Sets = 8;
                     sunday.Weight = 45;
-                    sunday.UserID = users.ID;
+                    sunday.Met = 9;
+                    sunday.CaloriesBurned = Math.Round(CaloriesBurned(users, 9));
+                    sunday.WorkoutID = workout.UserWorkoutID;
                     temp = ran;
                     db.Sundays.Add(sunday);
                     db.SaveChanges();

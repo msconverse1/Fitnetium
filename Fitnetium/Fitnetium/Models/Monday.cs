@@ -14,11 +14,12 @@ namespace Fitnetium.Models
         public string Name { get; set; }
         public int? Sets { get; set; }
         public int? Reps { get; set; }
-
+        public double? Met { get; set; }
+        public double? CaloriesBurned { get; set; }
         public float? Weight { get; set; }
-        [ForeignKey("User")]
-        [Display(Name = "UserID")]
-        public int? UserID { get; set; }
-        public User User { get; set; }
+        [ForeignKey("Workout")]
+        [Display(Name = "WorkoutID")]
+        public int? WorkoutID { get; set; }
+        public Workout Workout { get; set; }
     }
 }

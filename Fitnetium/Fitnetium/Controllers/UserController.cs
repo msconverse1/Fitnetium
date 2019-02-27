@@ -17,13 +17,19 @@ namespace Fitnetium.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            var userLoggedin = User.Identity.GetUserId();
+            var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+
+            return View(users);
         }
 
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var userLoggedin = User.Identity.GetUserId();
+            var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+
+            return View(users);
         }
 
         // GET: User/Create
@@ -106,13 +112,7 @@ namespace Fitnetium.Controllers
                 return View();
             }
         }
-        public double CaloriesBurned(User user)
-        {
-            var METValues = db.MetValues.Where(m => m.Activities == user.WorkOutType.ToString()).Where(t=>t.Intensity == user.WorkOutType.ToString()).FirstOrDefault();
-            var Met = Convert.ToDouble(METValues.Intensity);
-            double energyExpenditure = .0175 * Met * (user.weight * 2.2f);
-            return energyExpenditure;
-        }
+
         public double[] CalHeratRateZones(User user) 
         {
             var maxHearRate = 220 - user.age;

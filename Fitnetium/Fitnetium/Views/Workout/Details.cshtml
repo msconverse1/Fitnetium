@@ -63,16 +63,19 @@
         </dd>
     </dl>
 </div>
-
+@{ double totalcalories=0;
+    int ids = 0;}
 <table class="table table-condensed" style="border-collapse:collapse;">
     <thead>
         <tr>
             <th>Workout Days</th>
+            <th>Total Calories Burned</th>
         </tr>
     </thead>
     <tbody>
         <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
             <td>Monday</td>
+
         </tr>
     <td colspan="5" class="hiddenRow">
         <div class="accordian-body collapse" id="demo1">
@@ -83,6 +86,7 @@
                     <th>Reps to do</th>
                     <th>Sets to do</th>
                     <th>Weight set to</th>
+                    <th>Calories Burned</th>
                 </tr>
                 @foreach (var item in Model.Monday)
                 {
@@ -92,10 +96,17 @@
                         <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                         <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                         <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                     </tr>
+                    ids = (int)item.WorkoutID;
+                    totalcalories += (double)item.CaloriesBurned;
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+
                 }
+                <tr>Total Calories burned: @Math.Round(totalcalories)</tr>
             </table>
-        </div>
+    
+    </div>
     </td>
 
     <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
@@ -110,6 +121,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Tuesday)
                     {
@@ -118,6 +130,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
                     }
                 </table>
@@ -137,6 +150,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Wednesday)
                     {
@@ -146,6 +160,8 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
+
                         </tr>
                     }
                 </table>
@@ -164,6 +180,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Thursday)
                     {
@@ -172,6 +189,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
                     }
                 </table>
@@ -190,6 +208,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Friday)
                     {
@@ -198,6 +217,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
                     }
                 </table>
@@ -217,6 +237,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Saturday)
                     {
@@ -226,6 +247,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
                     }
                 </table>
@@ -235,6 +257,7 @@
     <tr data-toggle="collapse" data-target="#sunday" class="accordion-toggle">
         <td>Sunday</td>
     </tr>
+
     <tr>
         <td colspan="6" class="hiddenRow">
             <div id="sunday" class="accordian-body collapse">
@@ -245,6 +268,7 @@
                         <th>Reps to do</th>
                         <th>Sets to do</th>
                         <th>Weight set to</th>
+                        <th>Calories Burned</th>
                     </tr>
                     @foreach (var item in Model.Sunday)
                     {
@@ -254,6 +278,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
                     }
                 </table>
@@ -261,8 +286,9 @@
         </td>
     </tr>
     </tbody>
-</table>
-            <p>
 
-                @Html.ActionLink("Back to List", "Index")
-            </p>
+</table>
+<p>
+    @Html.ActionLink("Calories Burned", "CaloriesBurnedMonday", new { id = ids })
+    @Html.ActionLink("Back to List", "Index")
+</p>
