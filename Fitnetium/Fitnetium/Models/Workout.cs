@@ -32,6 +32,18 @@ namespace Fitnetium.Models
         }
         [Display(Name ="Day One Workout")]
         public WorkoutType Category { get; set; }
+        [Display(Name = "Day Two Workout")]
+        public WorkoutType Category2 { get; set; }
+        [Display(Name = "Day Three Workout")]
+        public WorkoutType Category3 { get; set; }
+        [Display(Name = "Day Four Workout")]
+        public WorkoutType Category4 { get; set; }
+        [Display(Name = "Day Five Workout")]
+        public WorkoutType Category5 { get; set; }
+        [Display(Name = "Day Six Workout")]
+        public WorkoutType Category6 { get; set; }
+        [Display(Name = "Day Seven Workout")]
+        public WorkoutType Category7 { get; set; }
         [Display(Name ="Name of Workout")]
         public string Name { get; set; }
 

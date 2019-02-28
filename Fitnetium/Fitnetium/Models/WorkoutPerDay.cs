@@ -9,12 +9,12 @@ namespace Fitnetium.Models
     {
        public Workout Workout { get; set; }
        public List<Monday> Monday { get; set; }
-       public List<Tuesday>Tuesday { get; set; }
-       public List<Wednesday> Wednesday { get; set; }
-       public List<Thursday> Thursday { get; set; }
-       public List<Friday> Friday { get; set; }
-       public List<Saturday> Saturday { get; set; }
-       public List<Sunday> Sunday { get; set; }
+       public List<Monday> Tuesday { get; set; }
+       public List<Monday> Wednesday { get; set; }
+       public List<Monday> Thursday { get; set; }
+       public List<Monday> Friday { get; set; }
+       public List<Monday> Saturday { get; set; }
+       public List<Monday> Sunday { get; set; }
 
     }
 }

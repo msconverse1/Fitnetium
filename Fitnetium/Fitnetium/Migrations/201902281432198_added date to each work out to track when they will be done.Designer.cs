@@ -7,13 +7,13 @@ namespace Fitnetium.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Addedthursdaytotable : IMigrationMetadata
+    public sealed partial class addeddatetoeachworkouttotrackwhentheywillbedone : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addedthursdaytotable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addeddatetoeachworkouttotrackwhentheywillbedone));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902261742438_Added thursday to table"; }
+            get { return "201902281432198_added date to each work out to track when they will be done"; }
         }
         
         string IMigrationMetadata.Source
