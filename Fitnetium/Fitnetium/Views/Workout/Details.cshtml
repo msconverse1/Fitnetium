@@ -66,7 +66,8 @@
 </div>
 @{ double totalcalories = 0;
     int ids = 0;
-    int? dayid = 0;}
+    int? dayid = 0;
+    string dateTime=null;}
 <table class="table table-condensed" style="border-collapse:collapse;">
     <thead>
         <tr>
@@ -104,13 +105,13 @@
                     ids = (int)item.WorkoutID;
                     dayid = item.Id;
                     totalcalories += (double)item.CaloriesBurned;
-
+                    dateTime = item.DayOfWeek;
 
                 }
                 <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                 <tr>
                     <td>
-                        @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("User Completed", "UserInput", new { id = ids,date=dateTime }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Calories Burned", "CaloriesBurnedMonday", new { id = ids }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>
@@ -147,13 +148,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedTuesday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
@@ -191,13 +192,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedWednesday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
@@ -232,13 +233,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedThursday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
@@ -273,13 +274,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedFriday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
@@ -316,13 +317,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedSaturday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
@@ -360,13 +361,13 @@
                         ids = (int)item.WorkoutID;
                         dayid = item.Id;
                         totalcalories += (double)item.CaloriesBurned;
-
+                        dateTime = item.DayOfWeek;
 
                     }
                     <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
-                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedSunday", new { id = ids }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>

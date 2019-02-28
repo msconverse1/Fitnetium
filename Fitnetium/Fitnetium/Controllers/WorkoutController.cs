@@ -145,9 +145,10 @@ namespace Fitnetium.Controllers
         }
 
         // GET: Workout/Edit/5
-        public ActionResult UserInput(int id)
+        public ActionResult UserInput(int id,string date)
         {
-            var workout = db.Mondays.Where(w => w.WorkoutID == id).ToList();
+
+            var workout = db.Mondays.Where(w => w.WorkoutID == id).Where(d=>d.DayOfWeek == date).ToList();
 
               
             
