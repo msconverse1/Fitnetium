@@ -54,9 +54,9 @@ namespace Fitnetium
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "2240083262873024",
+               appSecret: "b57b408f3f920f1e1ad80fe20cc72dd6");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
