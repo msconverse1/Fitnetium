@@ -1,4 +1,4 @@
-﻿@model Fitnetium.Models.Workout
+﻿@model List<Fitnetium.Models.Monday>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +6,23 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-     <style>
-         .body-content {
-             margin-left: auto;
-             margin-right: auto;
-             float:left;
-             margin-top:-130px;
-         }
-      
+    <style>
+        .body-content {
+            margin-left: auto;
+            margin-right: auto;
+            float: left;
+            margin-top: -130px;
+        }
     </style>
-    <script>
+    @if (Model[0].DayOfWeek == "Monday")
+    {
+        <script>
         $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
-                url: '@Url.Action("VisualizeCaloriesBurnedMonday", "Workout",new { id=Model.UserWorkoutID})',
+                url: '@Url.Action("VisualizeCaloriesBurnedMonday", "Workout",new { id=Model[0].WorkoutID})',
                 success: function (result) {
                     google.charts.load('current', {
                         'packages': ['corechart']
@@ -32,20 +33,17 @@
                 }
             });
         });
-
         function drawChart(result) {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Workout Name');
             data.addColumn('number', 'Calories Burned');
             data.addColumn('number', 'Actual Calories Burned');
             var dataArray = [];
-
             $.each(result, function (i, obj) {
                 dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
-                
+
             });
             data.addRows(dataArray);
-
             var columnChartOptions = {
                 title: "Mondays workout Calories",
                 width: 1600,
@@ -53,16 +51,277 @@
                 bar: { groupWidth: "20%" },
                 orientation: 'vertical'
             };
-
             var columnChart = new google.visualization.ColumnChart(document
                 .getElementById('linechart_div'));
-           
-
             columnChart.draw(data, columnChartOptions);
 
         }
-    </script>
-   
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Tuesday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedTuesday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Wednesday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedWednesday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Thursday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedThursday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Friday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedFriday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Saturday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedSaturday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
+    @if (Model[0].DayOfWeek == "Sunday")
+    {
+        <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeCaloriesBurnedSunday", "Workout",new { id=Model[0].WorkoutID})',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Workout Name');
+            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Actual Calories Burned');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.Name, obj.CaloriesBurned, obj.ActualCalories]);
+
+            });
+            data.addRows(dataArray);
+            var columnChartOptions = {
+                title: "Mondays workout Calories",
+                width: 1600,
+                height: 1000,
+                bar: { groupWidth: "20%" },
+                orientation: 'vertical'
+            };
+            var columnChart = new google.visualization.ColumnChart(document
+                .getElementById('linechart_div'));
+            columnChart.draw(data, columnChartOptions);
+
+        }
+        </script>
+    }
 </head>
 <body>
     <div id="linechart_div"></div>

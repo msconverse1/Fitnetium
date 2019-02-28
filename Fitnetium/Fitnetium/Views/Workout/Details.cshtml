@@ -47,7 +47,8 @@
             @Html.DisplayNameFor(model => model.Workout.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Workout.Name)
+            @Html.DisplayFor(model => model.Workout.Name) 
+            
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Workout.StartDate)
@@ -63,7 +64,7 @@
         </dd>
     </dl>
 </div>
-@{ double totalcalories=0;
+@{ double totalcalories = 0;
     int ids = 0;
     int? dayid = 0;}
 <table class="table table-condensed" style="border-collapse:collapse;">
@@ -89,6 +90,7 @@
                     <th>Weight set to</th>
                     <th>Calories Burned </th>
                 </tr>
+                
                 @foreach (var item in Model.Monday)
                 {
                     <tr>
@@ -106,11 +108,13 @@
 
                 }
                 <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
-                <tr><td>
-                @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
-                @Html.ActionLink("Calories Burned", "CaloriesBurnedMonday", new { id = ids }, new { @class = "btn btn-primary" })
-            </td></tr>
-               <tr><td></td></tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Calories Burned", "CaloriesBurnedMonday", new { id = ids }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+                <tr><td></td></tr>
             </table>
     
     </div>
@@ -130,6 +134,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{totalcalories = 0; }
                     @foreach (var item in Model.Tuesday)
                     {
                         <tr>
@@ -139,7 +144,19 @@
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedTuesday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
@@ -159,6 +176,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{ totalcalories = 0;}
                     @foreach (var item in Model.Wednesday)
                     {
                         <tr>
@@ -170,7 +188,19 @@
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
 
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedWednesday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
@@ -189,6 +219,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{ totalcalories = 0;}
                     @foreach (var item in Model.Thursday)
                     {
                         <tr>
@@ -198,7 +229,19 @@
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedThursday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
@@ -217,6 +260,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{ totalcalories = 0;}
                     @foreach (var item in Model.Friday)
                     {
                         <tr>
@@ -226,7 +270,19 @@
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedFriday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
@@ -246,6 +302,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{ totalcalories = 0;}
                     @foreach (var item in Model.Saturday)
                     {
                         <tr>
@@ -256,7 +313,19 @@
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedSaturday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>
@@ -277,6 +346,7 @@
                         <th>Weight set to</th>
                         <th>Calories Burned</th>
                     </tr>
+                    @{ totalcalories = 0;}
                     @foreach (var item in Model.Sunday)
                     {
                         <tr>
@@ -287,7 +357,19 @@
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
                             <td>@Html.DisplayFor(modelItem => item.CaloriesBurned)</td>
                         </tr>
+                        ids = (int)item.WorkoutID;
+                        dayid = item.Id;
+                        totalcalories += (double)item.CaloriesBurned;
+
+
                     }
+                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("User Completed", "UserInput", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Calories Burned", "CaloriesBurnedSunday", new { id = ids }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
                 </table>
             </div>
         </td>

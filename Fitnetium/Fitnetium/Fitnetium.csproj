@@ -265,6 +265,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Workout\CaloriesBurnedMonday.cshtml" />
     <Content Include="Views\Workout\UserInput.cshtml" />
+    <Content Include="Views\Workout\CaloriesBurnedForWeek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

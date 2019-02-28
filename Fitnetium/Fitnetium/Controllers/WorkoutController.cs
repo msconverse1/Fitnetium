@@ -207,18 +207,16 @@ namespace Fitnetium.Controllers
                 return View();
             }
         }
-        
-        public ActionResult CaloriesBurnedMonday(int? id)
+        #region Weeks Calories Burned
+        public ActionResult CaloriesBurnedForWeek(int? id)
         {
             var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
             return View(model);
         }
-        public ActionResult VisualizeCaloriesBurnedMonday(int? id)
+        public ActionResult VisualizeCaloriesBurnedWeek(int? id)
         {
- 
 
             var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
-
             return Json(List(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
 
         }
@@ -229,8 +227,141 @@ namespace Fitnetium.Controllers
             mondays = db.Mondays.Where(m => m.WorkoutID == id).ToList();
             return mondays;
         }
-
-    public double CaloriesBurned(User user,int mets,int workoutcount,double totaltime,double? passed)
+        #endregion
+        #region Monday Calories Burned
+        public ActionResult CaloriesBurnedMonday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d=>d.DayOfWeek == "Monday").ToList();
+            return View(monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedMonday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListMonday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListMonday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d=>d.DayOfWeek == "Monday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Tuesday Calories Burned
+        public ActionResult CaloriesBurnedTuesday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Tuesday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedTuesday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListTuesday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListTuesday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Tuesday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Wednesday Calories Burned
+        public ActionResult CaloriesBurnedWednesday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Wednesday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedWednesday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListWednesday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListWednesday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Wednesday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Thursday Calories Burned
+        public ActionResult CaloriesBurnedThursday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Thursday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedThursday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListThursday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListThursday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Thursday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Friday Calories Burned
+        public ActionResult CaloriesBurnedFriday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Friday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedFriday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListFriday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListFriday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Friday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Saturday Calories Burned
+        public ActionResult CaloriesBurnedSaturday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Saturday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedSaturday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListSaturday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListSaturday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Saturday").ToList();
+            return mondays;
+        }
+        #endregion
+        #region Sunday Calories Burned
+        public ActionResult CaloriesBurnedSunday(int? id)
+        {
+            var model = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            var monday = db.Mondays.Where(w => w.WorkoutID == model.UserWorkoutID).Where(d => d.DayOfWeek == "Sunday").ToList();
+            return View("CaloriesBurnedMonday", monday);
+        }
+        public ActionResult VisualizeCaloriesBurnedSunday(int? id)
+        {
+            var works = db.Workouts.Where(w => w.UserWorkoutID == id).FirstOrDefault();
+            return Json(ListSunday(works.UserWorkoutID), JsonRequestBehavior.AllowGet);
+        }
+        public List<Monday> ListSunday(int? id)
+        {
+            List<Monday> mondays = new List<Monday>();
+            mondays = db.Mondays.Where(m => m.WorkoutID == id).Where(d => d.DayOfWeek == "Sunday").ToList();
+            return mondays;
+        }
+        #endregion
+        public double CaloriesBurned(User user,int mets,int workoutcount,double totaltime,double? passed)
         {
             double time=0;
             if (passed == null)
