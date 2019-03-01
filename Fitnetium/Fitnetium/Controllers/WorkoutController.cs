@@ -114,6 +114,10 @@ namespace Fitnetium.Controllers
             return View(OneWeek);
         }
 
+        public ActionResult DetailsToUser(int id)
+        {
+          return  RedirectToAction("Details", "User",new { id });
+        }
         // GET: Workout/Create
         public ActionResult Create()
         {
@@ -163,7 +167,8 @@ namespace Fitnetium.Controllers
             var userLoggedin = User.Identity.GetUserId();
             var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
             var type = mondays[0].WorkoutID;
-            var edited = db.Mondays.Where(m => m.WorkoutID == type).ToList();
+            var day = mondays[0].DayOfWeek;
+            var edited = db.Mondays.Where(m => m.WorkoutID == type).Where(d=>d.DayOfWeek==day).ToList();
             try
             {
                 for (int i = 0; i < mondays.Count; i++)
@@ -224,8 +229,7 @@ namespace Fitnetium.Controllers
         public List<Monday> List(int? id)
         {
             List<Monday> mondays = new List<Monday>();
-
-            mondays = db.Mondays.Where(m => m.WorkoutID == id).ToList();
+                        mondays = db.Mondays.Where(m => m.WorkoutID == id).ToList();
             return mondays;
         }
         #endregion

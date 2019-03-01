@@ -15,12 +15,9 @@ namespace Fitnetium.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(int id )
         {
-            var userLoggedin = User.Identity.GetUserId();
-            var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
-
-            return View(users);
+            return RedirectToAction("Index", "Workout", new { id });
         }
 
         // GET: User/Details/5

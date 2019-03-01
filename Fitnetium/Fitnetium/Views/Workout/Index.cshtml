@@ -5,32 +5,36 @@
 }
 
 <h2>Index</h2>
-
+@{ int userID = 0;}
 <p>
     @Html.ActionLink("Create New", "Create")
+    
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-       
-       
-      
+
+
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        
-        <td>
-           
-            @Html.ActionLink("Details", "Details", new { id=item.UserWorkoutID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserWorkoutID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
 
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.UserWorkoutID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserWorkoutID })
+            </td>
+
+        </tr>
+        userID = (int)item.UserID;
+    }
+    @Html.ActionLink("View Profile", "DetailsToUser",  new { id = userID })
 </table>
