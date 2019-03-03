@@ -1,0 +1,49 @@
+﻿@model List<Fitnetium.Models.Recipe>
+
+@{
+    ViewBag.Title = "MealsToEat";
+}
+
+<h2>MealsToEat</h2>
+
+<div>
+    <h4>Recipe</h4>
+    <hr />
+    @{ int ids = 0;}
+    <dl class="dl-horizontal">
+        @foreach (var item in Model)
+        {
+            <dd>
+              <img src="@Url.Content(item.Image)" alt="IMAGES" />
+             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => item.RecipeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.RecipeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => item.CookTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.CookTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => item.Calories)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Calories)
+            </dd>
+            ids = (int)item.WorkoutID;
+        }
+        </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to Workout List", "DetailsToWorkout", new { id = ids })
+</p>

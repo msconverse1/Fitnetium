@@ -158,6 +158,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedTuesday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id=ids, date = dateTime,calories= totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>

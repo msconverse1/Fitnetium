@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,5 +16,9 @@ namespace Fitnetium.Models
         public string[] Ingredients { get; set; }
         public float CookTime { get; set; }
         public float Calories { get; set; }
+        [ForeignKey("Workout")]
+        [Display(Name = "WorkoutID")]
+        public int? WorkoutID { get; set; }
+        public Workout Workout { get; set; }
     }
 }

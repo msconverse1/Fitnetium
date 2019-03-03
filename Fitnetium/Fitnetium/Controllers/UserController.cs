@@ -160,18 +160,23 @@ namespace Fitnetium.Controllers
             }
             return BMI;
         }
-        public async Task RecipeLookUp(string input,User user)
+        public async Task<ActionResult> RecipeLookUp(int id,string date,double calories)
         {
+            var users = db.User.Where(i=>i.ID == id).FirstOrDefault();
+            var day = db.Mondays.Where(d=>d.DayOfWeek == date).FirstOrDefault();
+            
             string API = "e3e0781f8229c421c4bc8a3293094f86";
+            string app_id = "45a6dda3"; 
             List<Recipe> recipes = new List<Recipe>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.edamam.com");
-                var response = await client.GetAsync($"search?q={input}&app_id={API}&from0&to=3&calories=480-722&health=alcohol-free");
+                var response = await client.GetAsync($"search?q=&app_id={app_id}&app_key={API}&from0&to=3&calories={calories}&health=alcohol-free");
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
                 var json = JObject.Parse(stringResult);
+               
                 for (int i = 0; i < 3; i++)
                 {
                     var Label = json["hits"][i]["recipe"]["label"].ToString();
@@ -182,7 +187,7 @@ namespace Fitnetium.Controllers
                     {
                         string fullName = json["hits"][i]["recipe"]["ingredients"][j]["text"].ToString();
                     }
-                    var CookTime = json["hits"][i]["recipe"]["totaltime"].ToObject<float>();
+                    var CookTime = json["hits"][i]["recipe"]["totalTime"].ToObject<float>();
                     var Calories = json["hits"][i]["recipe"]["calories"].ToObject<float>();
 
                     Recipe recipe = new Recipe()
@@ -191,12 +196,17 @@ namespace Fitnetium.Controllers
                         Image = Image,
                         Ingredients = itemToSplit,
                         CookTime = CookTime,
-                        Calories = Calories
+                        Calories = Calories,
+                        WorkoutID = day.WorkoutID
                     };
                     recipes.Add(recipe);
                 }
             }
+            return View("MealsToEat", recipes);
         }
-       
+        public ActionResult DetailsToWorkout(int id)
+        {
+            return RedirectToAction("Details", "Workout", new { id });
+        }
     }
 }

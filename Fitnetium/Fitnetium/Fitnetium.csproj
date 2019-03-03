@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201902281432198_added date to each work out to track when they will be done.Designer.cs">
       <DependentUpon>201902281432198_added date to each work out to track when they will be done.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903032053174_added FK to Recipe.cs" />
+    <Compile Include="Migrations\201903032053174_added FK to Recipe.Designer.cs">
+      <DependentUpon>201903032053174_added FK to Recipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Monday.cs" />
@@ -211,6 +215,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\Fitnetium - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Fitnetium - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -266,6 +272,8 @@
     <Content Include="Views\Workout\CaloriesBurnedMonday.cshtml" />
     <Content Include="Views\Workout\UserInput.cshtml" />
     <Content Include="Views\Workout\CaloriesBurnedForWeek.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\MealsToEat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +294,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902281432198_added date to each work out to track when they will be done.resx">
       <DependentUpon>201902281432198_added date to each work out to track when they will be done.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903032053174_added FK to Recipe.resx">
+      <DependentUpon>201903032053174_added FK to Recipe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
