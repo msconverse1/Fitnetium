@@ -32,7 +32,13 @@ namespace Fitnetium.Controllers
         // GET: Workout/Details/5
         public ActionResult Details(int id)
         {
+            var userLoggedin = User.Identity.GetUserId();
+
+            // TODO: Add update logic here
+            var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+
             var workout = db.Workouts.Where(d => d.UserWorkoutID == id).SingleOrDefault();
+            workout.WorkoutCategory = users.Category.ToString();
             var startdate = workout.StartDate.Date;
             var enddate = workout.EndDate.Date;
             WorkoutPerDay OneWeek = new WorkoutPerDay();
@@ -44,6 +50,27 @@ namespace Fitnetium.Controllers
                     if (OneWeek.Monday ==null)
                     {
                         var day1 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Monday").Where(b => b.Date == date).ToList();
+                        foreach (var item in day1)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
                         OneWeek.Monday = day1;
                        
                     }
@@ -54,6 +81,27 @@ namespace Fitnetium.Controllers
                     if (OneWeek.Tuesday == null)
                     {
                         var day2 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Tuesday").Where(b => b.Date == date).ToList();
+                        foreach (var item in day2)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
                         OneWeek.Tuesday = day2;
                         
                     }
@@ -64,6 +112,27 @@ namespace Fitnetium.Controllers
                     if (OneWeek.Wednesday == null)
                     {
                         var day3 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Wednesday").Where(b => b.Date == date).ToList();
+                        foreach (var item in day3)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
                         OneWeek.Wednesday = day3;
                         
                     }
@@ -74,42 +143,117 @@ namespace Fitnetium.Controllers
                     if (OneWeek.Thursday == null)
                     {
                         var day4 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Thursday").Where(b => b.Date == date).ToList();
-                        OneWeek.Thursday = day4;
-                        
+                        foreach (var item in day4)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
+                        OneWeek.Thursday = day4;                     
                     }
-
                 }
                 if (date.DayOfWeek.ToString() == "Friday")
                 {
                     if (OneWeek.Friday == null)
                     {
                         var day5 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Friday").Where(b => b.Date == date).ToList();
-                        OneWeek.Friday = day5;
-                       
+                        foreach (var item in day5)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
+                        OneWeek.Friday = day5;                     
                     }
-
                 }
                 if (date.DayOfWeek.ToString() == "Saturday")
                 {
                     if (OneWeek.Saturday == null)
                     {
                         var day6 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Saturday").Where(b => b.Date == date).ToList();
-                        OneWeek.Saturday = day6;
-                      
+                        foreach (var item in day6)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
+                        OneWeek.Saturday = day6;                   
                     }
-
                 }
                 if (date.DayOfWeek.ToString() == "Sunday")
                 {
                     if (OneWeek.Sunday == null)
                     {
                         var day7 = db.Mondays.Where(m => m.WorkoutID == workout.UserWorkoutID).Where(a => a.DayOfWeek == "Sunday").Where(b => b.Date == date).ToList();
-                        OneWeek.Sunday = day7;
-                        
+                        foreach (var item in day7)
+                        {
+                            if (workout.WorkoutCategory == "Low")
+                            {
+                                item.Reps = 10;
+                                item.Sets = 3;
+                                item.Weight = 10;
+                            }
+                            if (workout.WorkoutCategory == "Moderate")
+                            {
+                                item.Reps = 5;
+                                item.Sets = 8;
+                                item.Weight = 25;
+                            }
+                            if (workout.WorkoutCategory == "Vigorous")
+                            {
+                                item.Reps = 8;
+                                item.Sets = 5;
+                                item.Weight = 45;
+                            }
+                        }
+                        OneWeek.Sunday = day7;                    
                     }
-
                 }
-
             }
             return View(OneWeek);
         }
@@ -134,6 +278,7 @@ namespace Fitnetium.Controllers
                 var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
                 workout.UserID = users.ID;
                 workout.User = users;
+                workout.WorkoutCategory = users.Category.ToString();
                 db.Workouts.Add(workout);
                 db.SaveChanges();
                 await Mondayworkout(users,workout);
@@ -153,10 +298,6 @@ namespace Fitnetium.Controllers
         {
 
             var workout = db.Mondays.Where(w => w.WorkoutID == id).Where(d=>d.DayOfWeek == date).ToList();
-
-              
-            
-            
             return View(workout);
         }
 

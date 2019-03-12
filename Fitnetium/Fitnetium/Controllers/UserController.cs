@@ -82,9 +82,9 @@ namespace Fitnetium.Controllers
 
                 // TODO: Add update logic here
                 var users = db.User.Where(u => u.ApplicationUserId == userLoggedin).FirstOrDefault();
+                
                 users.age = user.age;
                 users.weight = user.weight;
-
                 users.hieght = (float)user.Heightset;
                 user.hieght = (float)user.Heightset;
                 users.Category = user.Category;
@@ -94,6 +94,7 @@ namespace Fitnetium.Controllers
                 string[] BMI = CalBMI(user);
                 users.BMIPercent = Convert.ToDouble(BMI[0]);
                 users.BMIType = BMI[1];
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
