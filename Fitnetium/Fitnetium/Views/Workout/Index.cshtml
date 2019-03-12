@@ -7,18 +7,15 @@
 <h2 style="margin-top:130px">List of Workouts</h2>
 @{ int userID = 0;}
 <p style="text-align:left">
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create","", new { @class = "btn btn-primary" })
     
 </p>
-<p style="text-align:left"> @Html.ActionLink("View Profile", "DetailsToUser", new { id = userID })</p>
+<p style="text-align:left"> @Html.ActionLink("View Profile", "DetailsToUser", new { id = userID }, new { @class = "btn btn-primary" })</p>
 <table class="table">
     <tr>
-        <th>
+        <th style=" text-align:center">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-
-
-
     </tr>
 
     @foreach (var item in Model)
@@ -29,9 +26,8 @@
             </td>
 
             <td>
-
-                @Html.ActionLink("Details", "Details", new { id = item.UserWorkoutID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserWorkoutID })
+                @Html.ActionLink("Details", "Details", new { id = item.UserWorkoutID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserWorkoutID }, new { @class = "btn btn-primary" })
             </td>
 
         </tr>

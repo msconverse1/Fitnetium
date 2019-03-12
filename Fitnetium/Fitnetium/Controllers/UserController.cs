@@ -132,21 +132,21 @@ namespace Fitnetium.Controllers
 
 
             float modifier=0f;
-            if (user.WorkOutType == "Low")
+            if (user.Category.ToString() == "Low")
             {
                 modifier = .25f* restingHeart;
 
             }
-            else if (user.WorkOutType == "Moderate")
+            else if (user.Category.ToString() == "Moderate")
             {
                 modifier = .6f* restingHeart;
             }
-            else if (user.WorkOutType == "Vigorous")
+            else if (user.Category.ToString() == "Vigorous")
             {
                 modifier = .8f* restingHeart;
             }
             var lowHHR = .25 * restingHeart+80;
-            var highHHR = .8 * restingHeart + 80;
+            var highHHR = modifier * restingHeart + 80;
             double[] heartzone = new double[2];
             heartzone[0] = lowHHR;
             heartzone[1] = highHHR;
