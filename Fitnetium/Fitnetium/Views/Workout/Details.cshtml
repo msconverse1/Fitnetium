@@ -39,33 +39,7 @@
     }
 </style>
 
-<h2>Details</h2>
-<div>
-    <h4>WorkoutPerDay</h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Workout.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Workout.Name) 
-            
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Workout.StartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Workout.StartDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Workout.EndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Workout.EndDate)
-        </dd>
-    </dl>
-</div>
+<h2 style="margin-top:75px">@Html.DisplayFor(model => model.Workout.Name) </h2>
 @{ double totalcalories = 0;
     int ids = 0;
     int? dayid = 0;
@@ -74,7 +48,7 @@
     <thead>
         <tr>
             <th>Workout Days</th>
-            <th>Total Calories Burned</th>
+            <th>Recommended Plan</th>
         </tr>
     </thead>
     <tbody>
@@ -115,6 +89,7 @@
                     <td>
                         @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Calories Burned", "CaloriesBurnedMonday", new { id = ids }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>
                 <tr><td></td></tr>
@@ -141,7 +116,7 @@
                     @foreach (var item in Model.Tuesday)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td align="left">@Html.DisplayFor(modelItem => item.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
@@ -203,6 +178,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedWednesday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>
@@ -244,6 +220,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedThursday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>
@@ -285,6 +262,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedFriday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>
@@ -328,6 +306,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedSaturday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>
@@ -372,6 +351,7 @@
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Calories Burned", "CaloriesBurnedSunday", new { id = ids }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Meals To Eat", "RecipeLookUp", "User", new { id = ids, date = dateTime, calories = totalcalories }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 </table>

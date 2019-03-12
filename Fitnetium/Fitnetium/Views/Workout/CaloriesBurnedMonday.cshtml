@@ -11,7 +11,7 @@
             margin-left: auto;
             margin-right: auto;
             float: left;
-            margin-top: -130px;
+            margin-top: 130px;
         }
     </style>
     @if (Model[0].DayOfWeek == "Monday")
@@ -37,7 +37,7 @@
         function drawChart(result) {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Workout Name');
-            data.addColumn('number', 'Calories Burned');
+            data.addColumn('number', 'Projected Calories Burned');
             data.addColumn('number', 'Actual Calories Burned');
             var dataArray = [];
             $.each(result, function (i, obj) {

@@ -16,6 +16,7 @@ namespace Fitnetium.Models
         public string[] Ingredients { get; set; }
         public float CookTime { get; set; }
         public float Calories { get; set; }
+        public string Day { get; set; }
         [ForeignKey("Workout")]
         [Display(Name = "WorkoutID")]
         public int? WorkoutID { get; set; }

@@ -177,7 +177,9 @@ namespace Fitnetium.Controllers
                     edited[i].SetsCompleted = mondays[i].SetsCompleted;
                     var met = (int)edited[i].Met;
                     var time = (double)mondays[i].TimeCompleted;
+                    
                     edited[i].ActualCalories = CaloriesBurned(users, met, mondays.Count, time,1);
+                    users.CaloriesBurned += (float)edited[i].ActualCalories;
                     edited[i].TimeCompleted = time;
                 }
 

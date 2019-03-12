@@ -182,14 +182,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902281432198_added date to each work out to track when they will be done.cs" />
-    <Compile Include="Migrations\201902281432198_added date to each work out to track when they will be done.Designer.cs">
-      <DependentUpon>201902281432198_added date to each work out to track when they will be done.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903032053174_added FK to Recipe.cs" />
-    <Compile Include="Migrations\201903032053174_added FK to Recipe.Designer.cs">
-      <DependentUpon>201903032053174_added FK to Recipe.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Monday.cs" />
@@ -205,10 +197,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-theme.css" />
+    <Content Include="bootstrap-theme.min.css" />
+    <Content Include="bootstrap.css" />
+    <Content Include="bootstrap.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="cover.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -290,14 +287,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902281432198_added date to each work out to track when they will be done.resx">
-      <DependentUpon>201902281432198_added date to each work out to track when they will be done.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903032053174_added FK to Recipe.resx">
-      <DependentUpon>201903032053174_added FK to Recipe.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

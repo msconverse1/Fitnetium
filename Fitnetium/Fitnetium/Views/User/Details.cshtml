@@ -16,6 +16,19 @@
 
         <dd>
             @Html.DisplayFor(model => model.UserName)
+            
+            @if (Model.CaloriesBurned >= 500)
+            {
+                <span class="badge" style="background-color:saddlebrown">500 Calories Burned</span>
+            }
+            @if (Model.CaloriesBurned >= 1000)
+            {
+                <span class="badge" style="background-color:silver">1000 Calories Burned</span>
+            }
+            @if (Model.CaloriesBurned >= 2000)
+            {
+                <span class="badge" style="background-color:gold">2000 Calories Burned</span>
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.LowHHR)
