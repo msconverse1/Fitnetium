@@ -6,16 +6,29 @@
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script>
-    $('.accordian-body').on('show.bs.collapse', function () {
-        $(this).closest("table")
-            .find(".collapse.in")
-            .not(this)
-            .collapse('toggle')
-    })
+    //$('.accordian-body').on('show.bs.collapse', function () {
+    //    $(this).closest("table")
+    //        .find(".collapse.in")
+    //        .not(this)
+    //        .collapse('toggle')
+    //})
+    var acc = document.getElementsByClassName("accordion-toggle");
+    var i;
 
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
 </script>
 <style>
-    .collapsible {
+    .accordion-toggle {
         background-color: #777;
         color: white;
         cursor: pointer;
@@ -27,10 +40,20 @@
         font-size: 15px;
     }
 
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
+ 
+    .accordion-toggle:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: #777;
+        float: right;
+        margin-left: 5px;
+    }
+    .active,.accordion-toggle:hover {
+            background-color: #ccc;
+    }
+    .accordion-body.collapsed:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+    }
     .content {
         padding: 0 18px;
         display: none;
@@ -48,7 +71,7 @@
     <thead>
         <tr>
             <th>Workout Days</th>
-            <th>Recommended Plan</th>
+            <th style="text-align:right">Recommended Plan For Each Day</th>
         </tr>
     </thead>
     <tbody>
@@ -57,7 +80,7 @@
 
         </tr>
     <td colspan="5" class="hiddenRow">
-        <div class="accordian-body collapse" id="demo1">
+        <div class="accordion-body collapse" id="demo1">
             <table class="table">
                 <tr>
 
@@ -71,7 +94,6 @@
                 @foreach (var item in Model.Monday)
                 {
                     <tr>
-
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                         <td>@Html.DisplayFor(modelItem => item.Sets)</td>
