@@ -273,5 +273,10 @@ namespace Fitnetium.Controllers
         {
             return RedirectToAction("Details", "Workout", new { id });
         }
+
+        public ActionResult Badge()
+        {
+            return View();
+        }
     }
 }

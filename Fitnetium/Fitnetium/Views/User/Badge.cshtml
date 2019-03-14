@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Badge";
+}
+
+<h2 id="test2">Badge</h2>
+<style>
+    html, body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        position: relative;
+    }
+
+    .progress-ring__circle {
+        transition: 0.35s stroke-dashoffset;
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    input {
+        top: 10px;
+        left: 10px;
+        width: 80px;
+    }
+</style>
+<svg class="progress-ring" height="120" width="120">
+    <circle id="test" class="progress-ring__circle" stroke="white" stroke-width="1" fill="transparent" r="58" cx="60" cy="60" />
+</svg>
+<input value="35"
+       type="number"
+       step="5"
+       min="0"
+       max="100"
+       placeholder="progress">
+<script>
+    const circle = document.getElementById('test');
+    console.log(circle);
+    const radius = circle.r.baseVal.value;
+    const circumference = radius * 2 * Math.PI;
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = `${circumference}`;
+    function setProgress(percent) {
+        const offset = circumference - percent / 100 * circumference;
+        circle.style.strokeDashoffset = offset;
+    }
+    const input = document.querySelector('input');
+    setProgress(input.value);
+
+    input.addEventListener('change', function (e) {
+        if (input.value < 101 && input.value > -1) {
+            setProgress(input.value);
+        }
+    })
+</script>
+
