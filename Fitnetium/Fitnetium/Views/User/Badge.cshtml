@@ -1,9 +1,11 @@
-﻿
+﻿@model Fitnetium.Models.User
 @{
     ViewBag.Title = "Badge";
 }
 
-<h2 id="test2">Badge</h2>
+<h2>Badge</h2>
+
+
 <style>
     html, body {
         display: flex;
@@ -27,16 +29,59 @@
         width: 80px;
     }
 </style>
-<svg class="progress-ring" height="120" width="120">
-    <circle id="test" class="progress-ring__circle" stroke="white" stroke-width="1" fill="transparent" r="58" cx="60" cy="60" />
-</svg>
-<input value="35"
-       type="number"
-       step="5"
-       min="0"
-       max="100"
-       placeholder="progress">
+<table>
+    <tr>
+        <td class="col-md-3">
+            <h4>Bronze</h4>
+            <svg class="progress-ring" height="120" width="120">
+                <circle id="test" class="progress-ring__circle" stroke="white" stroke-width="1" fill="transparent" r="58" cx="60" cy="60" />
+            </svg>
+            <input id="test.v" value="@Model.CaloriesBurned"
+                   type="number"
+                   step="5"
+                   min="0"
+                   max="500"
+                   placeholder="progress">
+        </td>
+        <td class="col-md-3">
+            <h4>Total Calories Burned</h4>
+            <svg class="progress-ring" height="120" width="120">
+                <circle id="test2" class="progress-ring__circle" stroke="white" stroke-width="1" fill="transparent" r="58" cx="60" cy="60" />
+            </svg>
+            <input id="test2.v" value="35"
+                   type="number"
+                   step="5"
+                   min="0"
+                   max="5000"
+                   placeholder="progress">
+            </td>
+    </tr>
+    <tr></tr>
+</table>
 <script>
+    var cb = @Model.CaloriesBurned;
+    var test;
+    var cb_bronze;
+    var cb_Silver;
+    var cb_Gold;
+    if (cb >=500)
+    {
+        cb_bronze = 500;
+        test= cb- cb_bronze;
+    }
+    if (cb>=1000)
+    {
+        cb_Silver = 1000;
+        test -= cb_Silver;
+    }
+    if (cb >= 2000) {
+        cb_Gold = 2000;
+        test -= cb_Gold;
+    }
+    else if (cb < 500) {
+        cb_bronze = cb;
+    }
+     
     const circle = document.getElementById('test');
     console.log(circle);
     const radius = circle.r.baseVal.value;
@@ -44,15 +89,34 @@
     circle.style.strokeDasharray = `${circumference} ${circumference}`;
     circle.style.strokeDashoffset = `${circumference}`;
     function setProgress(percent) {
-        const offset = circumference - percent / 100 * circumference;
+        const offset = circumference - percent / 500 * circumference;
         circle.style.strokeDashoffset = offset;
     }
-    const input = document.querySelector('input');
-    setProgress(input.value);
+    const input = document.getElementById('test.v');
+    setProgress(cb_bronze);
 
     input.addEventListener('change', function (e) {
         if (input.value < 101 && input.value > -1) {
             setProgress(input.value);
+        }
+    })
+    const circle2 = document.getElementById('test2');
+    console.log(circle2);
+    const radius2 = circle2.r.baseVal.value;
+    const circumference2 = radius2 * 2 * Math.PI;
+    circle2.style.strokeDasharray = `${circumference2} ${circumference2}`;
+    circle2.style.strokeDashoffset = `${circumference2}`;
+    console.log();
+    function setProgress2(percent2) {
+        const offset = circumference2 - percent2 / 3000 * circumference2;
+        circle2.style.strokeDashoffset = offset;
+    }
+    const input2 = document.getElementById('test2.v');
+    setProgress2(cb_Gold);
+
+    input2.addEventListener('change', function (e) {
+        if (input2.value < 2000 && input2.value > -1) {
+            setProgress2(input2.value);
         }
     })
 </script>

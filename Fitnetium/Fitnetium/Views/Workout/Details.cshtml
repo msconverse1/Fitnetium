@@ -106,7 +106,8 @@
                     dateTime = item.DayOfWeek;
 
                 }
-                <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                <tr><td>Total Calories to burned: @Math.Round(totalcalories)</td></tr>
+
                 <tr>
                     <td>
                         @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })
@@ -138,7 +139,7 @@
                     @foreach (var item in Model.Tuesday)
                     {
                         <tr>
-                            <td align="left">@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td >@Html.DisplayFor(modelItem => item.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.Reps)</td>
                             <td>@Html.DisplayFor(modelItem => item.Sets)</td>
                             <td>@Html.DisplayFor(modelItem => item.Weight)</td>
@@ -150,7 +151,7 @@
                         dateTime = item.DayOfWeek;
 
                     }
-                    <tr><td>Total Calories burned: @Math.Round(totalcalories)</td></tr>
+                    <tr><td>Total Calories to burned: @Math.Round(totalcalories)</td></tr>
                     <tr>
                         <td>
                             @Html.ActionLink("User Completed", "UserInput", new { id = ids, date = dateTime }, new { @class = "btn btn-primary" })

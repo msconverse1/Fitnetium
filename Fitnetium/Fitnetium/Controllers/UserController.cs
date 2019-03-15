@@ -274,9 +274,10 @@ namespace Fitnetium.Controllers
             return RedirectToAction("Details", "Workout", new { id });
         }
 
-        public ActionResult Badge()
+        public ActionResult Badge(int id)
         {
-            return View();
+            User user = db.User.Where(u => u.ID == id).FirstOrDefault();
+            return View(user);
         }
     }
 }

@@ -511,6 +511,9 @@ namespace Fitnetium.Controllers
         #endregion
         public double CaloriesBurned(User user,int mets,int workoutcount,double totaltime,double? passed)
         {
+            Random random = new Random();
+           double temp= random.Next((int)user.LowHHR, (int)user.HighHHR);
+            temp+=random.NextDouble();
             double time=0;
             if (passed == null)
             {
@@ -521,7 +524,7 @@ namespace Fitnetium.Controllers
                 time = totaltime/60;
             }
                     
-        double energyExpenditure = time * (mets * (user.weight / 2.2f));
+        double energyExpenditure = ((time * (mets * (user.weight / 2.2f))) + temp) / 2;
         return energyExpenditure;
     }
         //get list of workouts

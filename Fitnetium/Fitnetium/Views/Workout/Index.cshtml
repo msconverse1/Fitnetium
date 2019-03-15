@@ -7,10 +7,10 @@
 <h2 style="margin-top:130px">List of Workouts</h2>
 @{ int userID = 0;}
 <p style="text-align:left">
-    @Html.ActionLink("Create New", "Create","", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create New Workout", "Create","", new { @class = "btn btn-primary" })
     
 </p>
-<p style="text-align:left"> @Html.ActionLink("View Profile", "DetailsToUser", new { id = userID }, new { @class = "btn btn-primary" })</p>
+<p style="text-align:left"> @Html.ActionLink("View User Profile", "DetailsToUser", new { id = userID }, new { @class = "btn btn-primary" })</p>
 <table class="table">
     <tr>
         <th style=" text-align:center">
